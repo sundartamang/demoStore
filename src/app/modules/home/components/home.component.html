@@ -1,0 +1,62 @@
+<div class="product_wrapper">
+  <kendo-grid
+  [kendoGridBinding]="gridData"
+  [pageSize]="pageSize"
+  [skip]="skip"
+  [pageable]="true"
+  [filterable]="true"
+  [loading]="isLoading"
+  [sortable]="{
+  allowUnsort : true,
+  mode : 'single'
+  }"
+  (pageChange)="pageChange($event)">
+  <kendo-grid-column
+    title="S.N"
+    [filterable]="false"
+    [headerStyle]="{
+    'font-weight': 'bold' }"
+    [width]="85"
+    [minResizableWidth]="75">
+    <ng-template
+      kendoGridCellTemplate
+      let-rowIndex="rowIndex">
+      <p>{{ rowIndex + 1 }}</p>
+    </ng-template>
+
+  </kendo-grid-column>
+  <kendo-grid-column
+    field="title"
+    title="Name"
+    [headerStyle]="{
+    'font-weight': 'bold' }">
+  </kendo-grid-column>
+  <kendo-grid-column
+    title="Imae"
+    [headerStyle]="{
+    'font-weight': 'bold' }">
+    <ng-template
+      kendoGridCellTemplate
+      let-dataItem="dataItem">
+      <img [src]="dataItem?.thumbnail" alt="productImage" style="height: 100px; width: 100px;">
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column
+  field="brand"
+  title="Brand"
+  [headerStyle]="{
+  'font-weight': 'bold' }">
+</kendo-grid-column>
+  <kendo-grid-column
+    [filterable]="false"
+    title="Price"
+    [headerStyle]="{
+    'font-weight': 'bold' }">
+    <ng-template
+    kendoGridCellTemplate
+    let-dataItem="dataItem">
+    <span>{{dataItem.price}} <b>$</b></span>
+  </ng-template>
+  </kendo-grid-column>
+</kendo-grid>
+</div>
